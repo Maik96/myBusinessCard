@@ -2,5 +2,5 @@
 
 
 
-![] (assets/screenshot.png)
+![] (images/screenshot.png)
 
