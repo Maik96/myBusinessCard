@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_card/constants.dart';
 
@@ -8,28 +11,28 @@ class MyBusinessCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color.fromARGB(255, 16, 16, 16),
+    return Scaffold(
+      backgroundColor: black,
       body: SafeArea(
           child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            CircleAvatar(
+            const CircleAvatar(
               radius: 50,
               backgroundImage: AssetImage("images/maik.png"),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               name,
               style: TextStyle(
                   fontFamily: "BebasNeue",
                   fontSize: 40,
                   letterSpacing: 0.5,
-                  color: Color.fromARGB(255, 228, 228, 228),
+                  color: white,
                   fontWeight: FontWeight.bold),
             ),
-            Text(
+            const Text(
               desc,
               style: TextStyle(
                   fontSize: 20,
@@ -37,33 +40,45 @@ class MyBusinessCard extends StatelessWidget {
                   color: Colors.white,
                   fontFamily: "Source Sans Pro"),
             ),
-            SizedBox(
+            const SizedBox(
                 height: 20,
                 width: 150,
                 child: Divider(
                   color: Colors.white,
                 )),
             Card(
-              //  padding: const EdgeInsets.all(5),
-              color: Colors.white,
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              child: Padding(
-                padding: EdgeInsets.all(1.0),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.mail,
-                    size: 40,
-                    color: Color.fromARGB(255, 0, 0, 0),
-                  ),
-                  title: Text(
-                    email,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: Color.fromARGB(255, 0, 0, 0)),
-                  ),
-                ),
-              ),
-            ),
+                //  padding: const EdgeInsets.all(5),
+                color: Colors.white,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                child: Padding(
+                  padding: const EdgeInsets.all(1.0),
+                  child: (!Platform.isIOS)
+                      ? const ListTile(
+                          leading: Icon(
+                            Icons.mail,
+                            size: 40,
+                            color: Color.fromARGB(255, 0, 0, 0),
+                          ),
+                          title: Text(
+                            email,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black),
+                          ),
+                        )
+                      : const ListTile(
+                          leading: Icon(
+                            CupertinoIcons.mail,
+                            size: 30,
+                            color: Colors.black,
+                          ),
+                          title: Text(email,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black)),
+                        ),
+                )),
           ],
         ),
       )),

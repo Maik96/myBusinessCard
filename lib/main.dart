@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_card/cardscreen.dart';
 
@@ -10,9 +13,15 @@ class MyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyBusinessCard(),
-    ));
+    if (Platform.isIOS) {
+      return const CupertinoApp(
+        debugShowCheckedModeBanner: false,
+        home: MyBusinessCard(),
+      );
+    } else if (!Platform.isIOS) {
+      return const MaterialApp(
+          debugShowCheckedModeBanner: false, home: MyBusinessCard());
+    }
+    return ErrorWidget("Only on Mobile Devices available");
   }
 }
